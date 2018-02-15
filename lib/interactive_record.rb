@@ -71,7 +71,7 @@ class InteractiveRecord
 
     options.each do |property, value|
       col_name = property.to_s
-      col_value = value.strip unless value.is_a? Integer
+      value.is_a? Integer ? col_value = value : col_value = value.strip 
     end
 
     sql = <<-SQL
