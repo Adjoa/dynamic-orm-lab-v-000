@@ -77,7 +77,7 @@ class InteractiveRecord
     sql = <<-SQL
       SELECT * FROM #{self.table_name} WHERE #{col_name} = ?
     SQL
-    # binding.pry
+
     DB[:conn].execute(sql, col_value)
   end
 
