@@ -74,11 +74,7 @@ class InteractiveRecord
       value.is_a?(Integer) ? col_value = value : col_value = value.strip
     end
 
-    sql = <<-SQL
-      SELECT * FROM #{self.table_name} WHERE #{col_name} = ?
-    SQL
-
-    DB[:conn].execute(sql, col_value)
+    DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{col_name} = ?", col_value)
   end
 
 end
