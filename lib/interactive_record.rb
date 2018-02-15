@@ -72,13 +72,12 @@ class InteractiveRecord
     options.each do |property, value|
       col_name = property.to_s
       col_value = value
-      binding.pry
     end
 
     sql = <<-SQL
       SELECT * FROM #{self.table_name} WHERE #{col_name} = #{col_value}
     SQL
-
+    binding.pry
     DB[:conn].execute(sql)
   end
 
