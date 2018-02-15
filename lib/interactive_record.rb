@@ -66,14 +66,20 @@ class InteractiveRecord
   end
 
   def self.find_by(options={})
+    col_name = nil
+    col_value = nil
+    
     options.each do |property, value|
       binding.pry
-      sql = <<-SQL
-        SELECT * FROM #{self.table_name} WHERE #{property} = #{value}
-      SQL
-
-      DB[:conn].execute(sql)
+      col_name = property.to_s
+      col_value = value
     end
+
+    sql = <<-SQL
+      SELECT * FROM #{self.table_name} WHERE #{col_name} = #{col_value}
+    SQL
+    
+    DB[:conn].execute(sql)
   end
 
 end
